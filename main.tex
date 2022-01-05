@@ -1,0 +1,246 @@
+\documentclass[twocolumn, 10pt]{article}
+
+\usepackage{amsmath}
+\usepackage{multirow}
+
+
+\title{Introduction to Binary Numbers \\ \large SFWRENG 3I03 Final Report}
+
+\author{Sheridan Fong\\ SFWRENG 3I03 T03 \\ 400240385 \\ fongs7@mcmaster.ca }
+
+
+\begin{document}
+
+% \setlength{\abovedisplayskip}{3pt}
+% \setlength{\belowdisplayskip}{3pt}
+
+
+\maketitle
+\abstract{Binary numbers are used every day in digital logic and computer-related technologies as they are the basis for how computers communicate and store data. This report aims to provide a foundation for the concept of binary numbers and how to convert numbers from decimal to binary systems. Lesson one offers a mathematical explanation of binary numbers and decimal conversion using equations, while lesson two provides an example-based and visual approach. Binary numbers are essential in digital logic and are crucial in computer operations. Therefore, software engineers must first understand the binary system to understand how computers communicate and store data. }
+\section{Introduction}\label{sec:intro}
+Binary numbers are the basis for how computers store, transfer and manipulate data. The term binary means to compose of or involve two things. The binary system contains two numbers, 0 and 1. These two digits are the foundation for digital logic and represent two electric states, on and off. For a computer to make sense of any information, data must be encoded in binary [1]. The two lessons in this paper aim to provide a foundation for understanding binary numbers and their importance and a method for converting decimal numbers to binary. Lesson one focuses on the mathematical logic of binary and provides the derivation of binary and decimal numbers using equations. Lesson two teaches binary numbers using an example and visual-based approach. The interactive examples and higher-level overview help solidify the mathematical knowledge gained in lesson one. The two lessons complement each other to provide a foundation for the binary system. This knowledge is vital in understanding computer operations. 
+
+\section{First Lesson} 
+In everyday life, numbers are represented using ten digits (0, 1, …, 9). This system of denoting numbers is called base-10 or the decimal number system. In decimal numbers, each digit's position represents a "power" in base-10 [2]. This lesson will introduce the concept of binary numbers and converting numbers from decimal to binary.
+
+The value 5314 can be represented as a power of base-10 like so: 
+$$ 5314 = 4 \cdot 10^3 + 3 \cdot 10^2 + 1 \cdot 10^1 + 4 \cdot 10^0$$ 
+Adding values of 0 to the left of 5314 does not impact the magnitude. For example, 005314 and 000005314 have the same magnitude. However, adding values of 0 to the right does impact magnitude as the decimal system is position-based. 
+
+\subsection{Introduction to Binary}
+In logic circuits used by computers, it is difficult to directly represent digits like 6, 3, and 8. Computers use electronic technology to define if a current is on or off, also known as 1 or 0. Computers use base-2 numbers, also known as binary, to represent states. As an introduction, only unsigned (positive) integers will be discussed. Like decimal numbers, binary numbers also use positional notation. In decimals, each digit is to the “power of 10,” in binary; each digit is to the “power of 2.”  
+$$1101 = 1 \cdot 2^3 + 1 \cdot 2^2 + 0 \cdot 2^ 1 + 1 \cdot 2^0 = (13)_{10}$$
+$$ 111 = 1 \cdot 2^2 + 1 \cdot 2^1 + 1 \cdot 2^0 = (7)_{10}$$
+
+
+
+The value of a digit depends on the base; the following notation is used to differentiate base-2 and base-10 numbers: $(1101)_{2}$ and $(5314)_{10}$. Each binary digit is called a bit, four bits are a nibble, and eight are a byte.
+
+The most significant number that is represented in $n$ bits is $2^n – 1$, as zero has a position. For unsigned numbers, the rightmost bit is called the least significant bit (LSB), and the leftmost bit is the most significant bit (MSB). An example of binary-decimal number pairs and their LSB and MSB can be found below.
+
+$$(\textbf{1}11\textbf{1})_{2} = (15)_{10}$$
+$$(\textbf{1}111 111\textbf{1})_{10} = (255)_{10}$$
+
+\subsection{Converting Between Decimal and Binary}
+Converting from decimal to binary is an important tool used to communicate with computers and to double check binary arithmetic and operations. Decimal numbers need to be converted from the form $D = d_{k-1} ... d_{1}d_{0}$ with value $(V)_{10}$, to a binary number with form $B = b_{n-1} .. b_{2}b_{1}b_{0}$. Where $d \in $ \{0, 1 ... , 10\} and $b \in$ \{0, 1\}. 
+\\ \\
+The value of the decimal number $D$ needs to be represented in the form: 
+\begin{equation}
+V = b_{n-1} \cdot 2^{n-1} + … + b_{2} \cdot 2^2 + b_{1} \cdot 2^1 + b_{0} \cdot 2^0 \\ = \sum_{i=0}^{n-1} b_{i} \cdot 2^i
+\end{equation}
+
+If V is manipulated and divided by 2 the equation is now: 
+\begin{equation}
+\frac{V}{2} =  \underline{b_{n-1} \cdot 2^{n-2} + … + b_{2} \cdot 2^1 + b_{1} \cdot 2^0} + \frac{b0}{2}
+\end{equation}
+
+In this manipulated equation $\frac{b_{0}}{2}$ turns into either 0 or 0.5. If the value is divided by two with integer division, no fractions are possible. Therefore, the equation can be broken down into the quotient $Q_{1}$ (the underlined part) and the remainder which is $b_{0}$. After the division, the remainder $b_{0}$ is the LSB of the binary number. 
+
+The quotient $Q_{1}$ is also a binary number and can be divided by 2. If $Q_{1}$ is divided by 2, the remainder is $b_{1}$. To convert a decimal number to binary, divide the quotient by two until the quotient is 0. Here is an example and solution of converting $(781)_{10}$ to binary.
+
+%table for the example
+\begin{table}[ht]
+\centering
+\caption{Converting $781_{10}$ to Binary.}
+\begin{tabular}[t]{lcc}
+\hline
+&Remainder&\\
+\hline
+$781 \div 2 = 390$ &1&LSB\\
+$390 \div 2 = 195$ &0&--\\
+$195 \div 2 = 97$&1&--\\
+$97 \div 2 = 48$&1&--\\
+$48 \div 2 = 24$&0&--\\
+$24 \div 2 = 12$&0&--\\
+$12 \div 2 = 6$&0&--\\
+$6 \div 2 = 3$&0&--\\
+$3 \div 2 = 1$&1&--\\
+$1 \div 2 = 0$&1&MSB \\
+\hline
+
+\end{tabular}
+\end{table}%
+
+This lesson has outlined the foundation for binary numbers and how to convert decimal numbers to binary. 
+\section{Second Lesson}
+Binary is a way of representing information using only two options. Computers use binary as wires carry information in the form of electricity; the two options are on and off states. Computers also use binary as a way to store information. However, binary is not always on or off states; for example, hard disk drives use magnetic positive and negative, and DVDs use reflective and non-reflective surfaces [3]. Binary is another way to store information.
+
+This lesson is an alternative way to learn about binary numbers. It will cover the following topics in an example and visual-based approach: (1) concept of binary and decimal numbers and (2) converting decimal numbers to binary. 
+
+\subsection{The Concept of Binary and Decimal Numbers}
+The binary and decimal systems can represent or express numbers in integer form and are capable of arithmetic operations. For example, the number 16 can be represented in the decimal system as $(16)_{10}$ and in the binary system as $(10000)_{2}$. To understand a value, the base must be declared, decimal numbers are base-10 and are represented like this $(number)_{10}$ and binary numbers are base-2 and are represented like this $(number)_{2}$. 
+\newline \newline
+Binary and decimal systems determine the value of a number by the position of the decimal digit or binary bit from the decimal point or binary point. The leftmost digit/bit is the most significant and carries the largest weight, and the rightmost bit is the least significant. For example, for the value $(929.53)_{10}$, 9 has the largest weight, and 3 has the lowest weight.  
+
+There are differences to the systems that define them. In decimal numbers, values are represented using digits \{0, 1, …, 9\} while binary numbers, values are represented using \{0, 1\}. Binary numbers and decimal numbers also differ in bases. Each position to the left from the decimal/binary point represents the base value to a new power [4]. For now, this lesson will only cover positive binary numbers. 
+
+%table for the example
+\begin{table}[ht]
+\centering
+\caption{Decimal and Binary System Positional Place Values.}
+\begin{tabular}[t]{lcccccc}
+\hline
+System&Column n&...&3&2&1&0\\
+\hline
+Decimal&$10^{n}$&...&$10^{3}$&$10^{2}$&$10^{1}$&$10^{0}$\\
+Binary &$2^{n}$&..&$2^{3}$&$2^{2}$&$2^{1}$&$2^{0}$\\
+
+\hline
+\label{table: table2}
+\end{tabular}
+\end{table}%
+
+Using Table \ref{table: table2}, binary and decimal numbers can be interpreted to their base-10 value by multiplying the value at each place by the positional place value and summing the products up. Notice how the column index starts at 0. 
+
+Table \ref{table: table3} is an example of how to convert the binary value $(1001)_{2}$ to the decimal value 9. 
+%table for the example
+\begin{table}[ht]
+\centering
+\caption{Converting $(1001)_{2}$ from Binary to Decimal.}
+\begin{tabular}[t]{lllll}
+\hline
+System&3&2&1&0\\
+\hline
+Binary Value&1&0&0&1\\
+Place Value &$2^{3}$&$2^{2}$&$2^{1}$&$2^{0}$\\
+Binary $\cdot$ Place & 1 $\cdot$ 8&0 $\cdot$ 4& 0 $\cdot$ 2 & 1 $\cdot$ 1\\ 
+Sum of Products& 8 + & 0 + & 0 + & 1\\
+Sum & 9\\
+\hline
+\label{table: table3}
+\end{tabular}
+\end{table}%
+
+
+
+
+
+\subsection{Decimal Numbers to Binary}
+Converting decimal numbers to binary is important as binary is used to communicate with computers. As mentioned in section 3.1, binary is a positional system. Table \ref{table: table4} outlines the positional places and their respective values. If the value is 0, the value in that position does not hold [5]. 
+
+%table for the example
+\begin{table}[ht]
+\centering
+\caption{Binary Positional Values.}
+\begin{tabular}[t]{lccccc}
+\hline
+Column n&4&3&2&1&0\\
+\hline
+Binary Value&0&0&0&0&0\\
+Decimal Value &16&8&4&2&1\\
+
+\hline
+\label{table: table4}
+\end{tabular}
+\end{table}%
+
+Steps to convert from a decimal number $D$ to a binary number $B$
+\begin{enumerate}
+  \item Subtract the largest power of 2 from $D$.
+  \item Put a “1” in the column place for the binary number (the column is the same value as the largest power possible).
+  \item Subtract the largest power of two value from the remainder of Step 1. 
+  \item Go to Step 1 then 2, and repeat until there is no remainder left. All positional column places without a “1” get filled in with “0.”
+\end{enumerate}
+
+Here is a step-by-step example on how to convert $(25)_{10}$ to binary:
+
+\begin{enumerate}
+  \item Subtract the largest power of 2 that is less than or equal to 25. This value is 16, therefore 25-16 = 9.
+  \item Put a 1 in the 16’s place column. This is also known as column 4, the four is calculated from $2^4 = 16$. 
+  \item Now find the largest power of 2 that can fit into 9. That is $2^3 = 8$. Therefore, the new remainder is 9-8 = 1
+  \item Place a “1” in the 8’s place column also known as column 3. 
+  \item Find the largest power of 2 that can fit into 1. That is $2^0 = 1$. Therefore, the new remainder is 1-1 = 0
+  \item Place a “1” in the 1’s place also known as column 0. 
+  \item Since the remainder is 0, we stop, the result is 11xx1, replace the x’s with 0s to get the binary number 1101. 
+\end{enumerate}
+
+
+
+%table for the example
+\begin{table}[ht]
+\centering
+\caption{Exercise 1: Fill in the Table.}
+\begin{tabular}[t]{lcl}
+\hline
+Decimal&Binary&Expansion\\
+\hline
+0 &0&0 ones\\
+-- &10&1 two and zero ones\\
+4 &--&--\\
+-- &111&--\\
+8 &--&--\\
+-- &--&1 eight, 0 fours, 1 two, 1 one\\
+12 &--&--\\
+-- &1111&--\\
+16 &--&--\\
+
+\hline
+\label{table: ex}
+\end{tabular}
+\end{table}%
+
+%table for the example
+\begin{table}[ht]
+\centering
+\caption{Exercise 1: Answers.}
+\begin{tabular}[t]{lcl}
+\hline
+Decimal&Binary&Expansion\\
+\hline
+0 &0&0 ones\\
+-- &10&1 two and zero ones\\
+4 &100&1 four, 0 twos, and 0 ones\\
+7 &111&1 four, 1 two, 1 one\\
+8 &1000&1 four, 0 twos, 0 ones\\
+11 &1011&1 eight, 0 fours, 1 two, 1 one\\
+12 &1100&1 eight, 1 four, 0 twos, 0 ones\\
+15 &1111&1 eight, 1 four, 1 two, 1 one\\
+16 &10000&\multirow{1}{5.5cm}{1 sixteen, 0 eights, 0 fours, 0 twos, and 0 ones} \\
+--&--&--\\
+
+\hline
+\label{table: ans}
+\end{tabular}
+\end{table}%
+
+Now that lesson one and two have outlined how to convert numbers between systems try filling out Table \ref{table: ex} to test your knowledge. The answers can be found in Table \ref{table: ans}.
+
+\section{Conclusion}
+The foundational knowledge of binary numbers is essential in understanding how computers operate. Computer systems use binary numbers to communicate, store and manipulate data. Decimal numbers are used in everyday life, and their values can be represented in binary using a base-2 system instead of base-10. The binary and decimal systems are positional based as the value of the number is based on the position of the digits. The leftmost digit is the most significant bit. It has the largest impact on the number's value, and the rightmost digit is the least important bit having the least significant effect on the number's value. Translating decimal numbers to binary can be accomplished using the division approach outlined in lesson one and the largest power approach from lesson two. The knowledge from this paper provides a foundation for binary numbers and can be applied to understanding binary arithmetic operations.  
+
+\section{References}
+[1] “Binary Numbers and Binary Math - ETHW.” https://ethw.org/Binary\_Numbers\_and\_Binary\_Math (accessed Dec. 15, 2021). \\
+\newline
+[2] R. Leduc, “Number Representation and Arithmetic Circuits,” presented to SFWRENG 2DA4, McMaster University, Hamilton, Ontario, Canada. \\
+\newline
+[3] “Binary Bracelets.” https://code.org/curriculum/course2/14/Teacher (accessed Dec. 15, 2021).\\
+\newline
+[4]“Decimal vs Binary - What are the Similarities and differences between Binary \& Decimal Systems? - Schoolelectronic.” https://www.schoolelectronic.com/decimal-vs-binary/ (accessed Dec. 15, 2021). \\
+\newline
+[5] “Kids Math: Binary Numbers. ”https://www.ducksters.com/kidsmath/binary\_numbers\_basics.php (accessed Dec. 15, 2021).
+
+
+
+
+\end{document}
+
